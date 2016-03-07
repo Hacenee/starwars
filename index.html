@@ -4,9 +4,13 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    
+     <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
    
-    <title> Responsive Single Page Template : Design View</title>
+    <title> star wars quotes</title>
   
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
    
@@ -29,20 +33,21 @@
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
+  padding-left: 25px;
 }
 
 
 
 
-.button:hover span {
-  padding-right: 25px;
-}
 
 
 </style>
     
 </head>
-<body  background="assets/img/background.jpeg" >
+<body  background="assets/img/background.jpeg"  >
+
+
+<div >
      <div class="navbar navbar-inverse navbar-fixed-top scrollclass" >
         <div class="container">
             <div class="navbar-header">
@@ -64,23 +69,35 @@
     <div class="container" id="home">
         <div class="row text-center scrollclass">
             <div class="col-md-12">
-                <span class="head-main">Star Wars </span>
+                <span class="head-main">Star Wars Quotes </span>
                
                  
             </div>
 			
         </div>
     </div>
-	<div class="row text-center scrollclass">
-            <div class="col-md-12">
-               
-               <button type="button" class = "button" >Get a random quote</button>
-                 
-            </div>
-			 <h3 id="quote"></h3>
-             <h3 id="author" ></h3>
-        </div>
 	
+	<div bgcolor="#E6E6FA">
+	
+	 <div >
+	  <div style="background-color:lightblue;"  >
+	  <h3 id="quote"></h3>
+      <h3 id="author" ></h3>
+	    </div>
+      <button class="button"  id="random">Random quote</button>
+      <button class="button"  id="Yoda">Yoda</button>
+      <button class="button"  id="Dooku">Count Dooku</button>
+	  
+	  <button class="button"  id="Obi-Wan">Obi-Wan</button>
+        
+      <button class="button"  id="Palpatine">Palpatine</button>
+	  <button class="button"  id="Vader">Darth Vader</button>
+	  <button class="button"  id="Leia">leia</button>
+	
+	
+	
+	</div>
+	</div>
   
 
    
@@ -141,72 +158,139 @@ ReactDOM.render(
 );
 */
 
-      var randomquote = function(){
-
-      var nb = Math.floor((Math.random() * 11) + 1);
-     
-     
-	 ReactDOM.render(<h3>{quotes[nb].quote}</h3>, document.getElementById('quote'));
-      ReactDOM.render(<h3>{quotes[nb].author}</h3>, document.getElementById('author'));
-
-                         
-						   }
 
 
-
-
-
-  var getquote = function(author)
-   {
-  var quote;
-  var nb;
-   var goodauthor = false;
-  while(goodauthor == false){
-
-    nb = Math.floor((Math.random() * 11) + 1);
-   if(quotes[nb].author == author)
-    {
-    quote =  quotes[nb].quote;
-    goodauthor = true;
-   }
- 
+     function  randomquote() 
+	  {
+     var nb = Math.floor((Math.random() * 11) + 1);
+	  
   ReactDOM.render(<h3>{quotes[nb].quote}</h3>, document.getElementById('quote'));
-  ReactDOM.render(<h3>{quotes[nb].author}</h3>, document.getElementById('author'));
+  ReactDOM.render(<h3>{quotes[nb].author}</h3>, document.getElementById('author'));			
+	  
+	  
+	  }
+     
+	
+     		   
+
+
+
+
+
  
-                         }
-						 
- console.log(quote);
+  function getquote (author)
+   {
+  var authorquotes = [];
+      
+	  
+	  for(var i =0;i<quotes.length;i++)
+      {
+        if(quotes[i].author == author)
+        {
+          authorquotes.push(quotes[i]);
+        }
+      }
+      if(author.length > 0)
+      {
+        var nb = Math.floor((Math.random() * authorquotes.length));
+        ReactDOM.render(<h3>{authorquotes[nb].quote}</h3>, document.getElementById('quote'));
+        ReactDOM.render(<h3>{authorquotes[nb].author}</h3>, document.getElementById('author'));
+      }
+
 
 }
+
+ var Rdn = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { randomquote(); },
+      render: function() { return (<p onClick={this.handleClick}> random quote</p>);}});
+   
+
+      ReactDOM.render(<Rdn />, document.getElementById('random'));
+	  
+	  
+
+	  var Yoda = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { getquote("- Yoda"); },
+      render: function() { return (<p onClick={this.handleClick}> Yoda</p>);}});
+   
+
+      ReactDOM.render(<Yoda />, document.getElementById('Yoda'));
+	  
+	  
+var Dooku = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { getquote("- Count Dooku"); },
+      render: function() { return (<p onClick={this.handleClick}> Count Dooku</p>);}});
+   
+
+      ReactDOM.render(<Dooku />, document.getElementById('Dooku'));
+	  
+var ObiWan = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { getquote("- Obi-Wan-Kenobi"); },
+      render: function() { return (<p onClick={this.handleClick}>Obi-Wan</p>);}});
+   
+
+      ReactDOM.render(<ObiWan />, document.getElementById('Obi-Wan'));
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+var Palpatine = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { getquote(" - Senator palpatine"); },
+      render: function() { return (<p onClick={this.handleClick}>Palpatine</p>);}});
+
+ReactDOM.render(<Palpatine />, document.getElementById('Palpatine'));
+	  
+	
+var Vader = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { getquote("- Darth Vader"); },
+      render: function() { return (<p onClick={this.handleClick}>Darth Vader</p>);}});
+   
+
+ ReactDOM.render(<Vader />, document.getElementById('Vader'));	
+
+	  
+	  
+	  
+	    
+var Leia = React.createClass( {
+      getInitialState: function() {return {pressed: false}; },
+      handleClick: function(event) { getquote("- Princess leila"); },
+      render: function() { return (<p onClick={this.handleClick}> Leia</p>);}});
+   
+
+      ReactDOM.render(<Leia />, document.getElementById('Leia'));
+	  
+	 
+
+	  
+	  
+	  
+
+	  
+
+	  
+	  
+	 
+	 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 </script>	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 </body>

@@ -79,7 +79,7 @@ if(quotes[nb].author == author)
  console.log(quote);
 
 }
-//exo1();
+//randomquote();
 
 getquote("- Yoda");
 

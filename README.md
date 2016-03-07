@@ -1,5 +1,26 @@
 # STAR WARS
 
+To use the generator we have to :
+
+-launch the file index.html
+
+
+There is some bugs with the geneartor , Palpatines 's quotes can not appear and darth vader's one is always the same. sometimes we have to click several times to see the expected quote.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 > Star Wars quotes generator with React
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
