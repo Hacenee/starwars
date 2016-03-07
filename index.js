@@ -45,7 +45,7 @@ ReactDOM.render(
 );
 */
 
-var exo1 = function(){
+var randomquote = function(){
 
 var nb = Math.floor((Math.random() * 11) + 1);
 console.log(quotes[nb].quote);
@@ -66,7 +66,7 @@ var goodauthor = false;
 while(goodauthor == false){
 
 var nb = Math.floor((Math.random() * 11) + 1);
-if(quotes[nb].author.indexOf(author) > -1)
+if(quotes[nb].author == author)
  {
  quote =  quotes[nb].quote;
  goodauthor = true;
@@ -81,7 +81,7 @@ if(quotes[nb].author.indexOf(author) > -1)
 }
 //exo1();
 
-getquote("Yoda");
+getquote("- Yoda");
 
 
 
